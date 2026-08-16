@@ -18,7 +18,7 @@ router.get('/catalogo', async (req, res) => {
                     NULL
                 ) AS colores
             FROM producto p
-            LEFT JOIN categoria c ON p.categoria_id = c.id
+            LEFT JOIN cat_producto c ON p.cat_producto_id = c.id
             LEFT JOIN unidad u ON u.producto_id = p.id
             WHERE p.activo = true
             GROUP BY p.id, c.nombre
