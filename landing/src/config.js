@@ -41,5 +41,3 @@ export const TESTIMONIOS = [
     { nombre: 'Miguel Ángel Díaz', ciudad: 'Lima', estrellas: 5, texto: 'Todo llegó con garantía y el trámite fue sencillo. Recomiendo Mo Importaciones al 100%.' },
     { nombre: 'Lucía Fernández', ciudad: 'Piura', estrellas: 5, texto: 'Empresa seria. Me contactaron al momento, resolvieron mis dudas y el envío llegó antes de lo prometido. Volvería a comprar.' },
 ];
-
-export const API_BASE = import.meta.env.VITE_API_URL || '';

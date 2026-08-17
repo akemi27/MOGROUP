@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL, EMPRESA } from '../config';

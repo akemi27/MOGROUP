@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL } from '../config';

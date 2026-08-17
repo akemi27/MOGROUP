@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { Instagram, ExternalLink } from 'lucide-react';
 import { EMPRESA } from '../config';

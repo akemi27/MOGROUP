@@ -1,3 +1,5 @@
+'use client';
+
 import { Truck, ShieldCheck, Headphones, FileCheck, ArrowRight } from 'lucide-react';
 import { WHATSAPP } from '../config';
 
