@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ShieldCheck, Truck, Zap, MessageCircle } from 'lucide-react';
 import { EMPRESA, BENEFICIOS, WHATSAPP, WHATSAPP_MSG_GENERAL } from '../config';
 
@@ -24,17 +25,17 @@ export default function SobreNosotros() {
 
           {/* Left — compact collage (2 cols) */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl overflow-hidden">
-              <img src="/prod-moto-sport.png" alt="Motos" className="w-full aspect-square object-cover" />
+            <div className="relative rounded-2xl overflow-hidden aspect-square">
+              <Image src="/prod-moto-sport.png" alt="Motos" fill sizes="20vw" className="object-cover" />
             </div>
-            <div className="rounded-2xl overflow-hidden">
-              <img src="/prod-iphone-pro.png" alt="iPhones" className="w-full aspect-square object-cover" />
+            <div className="relative rounded-2xl overflow-hidden aspect-square">
+              <Image src="/prod-iphone-pro.png" alt="iPhones" fill sizes="20vw" className="object-cover" />
             </div>
-            <div className="rounded-2xl overflow-hidden">
-              <img src="/prod-laptop.png" alt="MacBooks" className="w-full aspect-square object-cover" />
+            <div className="relative rounded-2xl overflow-hidden aspect-square">
+              <Image src="/prod-laptop.png" alt="MacBooks" fill sizes="20vw" className="object-cover" />
             </div>
-            <div className="rounded-2xl overflow-hidden">
-              <img src="/prod-phones.png" alt="Accesorios" className="w-full aspect-square object-cover" />
+            <div className="relative rounded-2xl overflow-hidden aspect-square">
+              <Image src="/prod-phones.png" alt="Accesorios" fill sizes="20vw" className="object-cover" />
             </div>
           </div>
 

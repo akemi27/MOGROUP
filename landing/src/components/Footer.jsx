@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Instagram, Facebook, MapPin, Mail, Phone, ShieldCheck, FileText, Truck } from 'lucide-react';
 import { EMPRESA, WHATSAPP, WHATSAPP_MSG_GENERAL } from '../config';
 
@@ -39,7 +40,7 @@ export default function Footer() {
 
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src="/prod-moto-detail.png" alt="" className="w-full h-full object-cover opacity-10" />
+        <Image src="/prod-moto-detail.png" alt="" fill sizes="100vw" className="object-cover opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/80" />
       </div>
 
@@ -67,7 +68,7 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex items-center gap-3 mb-10">
-            <img src="/chine.png" alt="" className="h-10 w-auto object-contain" style={{ mixBlendMode: 'screen' }} />
+            <Image src="/chine.png" alt="" width={100} height={40} className="h-10 w-auto object-contain" style={{ mixBlendMode: 'screen' }} />
             <div>
               <p className="text-white font-bold text-lg">{EMPRESA.nombre}</p>
               <p className="text-white/30 text-xs">{EMPRESA.tagline}</p>

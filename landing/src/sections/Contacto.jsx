@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL, EMPRESA } from '../config';
 
@@ -58,7 +59,7 @@ export default function Contacto() {
 
             {/* Company card */}
             <div className="bg-[#f5f5f5] rounded-xl p-5 mb-6 flex items-center gap-4">
-              <img src="/chine.png" alt="" className="h-10 w-auto object-contain" />
+              <Image src="/chine.png" alt="" width={100} height={40} className="h-10 w-auto object-contain" />
               <div>
                 <p className="text-sm font-bold text-slate-700">{EMPRESA.razonSocial}</p>
                 <p className="text-[11px] text-slate-400">RUC: {EMPRESA.ruc} · Inscrita: {EMPRESA.constitucion}</p>

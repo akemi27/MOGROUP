@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { ChevronRight, ChevronLeft, ShoppingCart, MessageCircle } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_PRODUCTO, WHATSAPP_MSG_GENERAL } from '../config';
 
@@ -33,8 +34,8 @@ function ProductCard({ p }) {
     <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
       {/* Image */}
       <div className="relative h-52 bg-white overflow-hidden">
-        <img src={p.img} alt={p.nombre}
-             className="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-500" />
+        <Image src={p.img} alt={p.nombre} fill sizes="260px"
+               className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" />
         {p.disponibles > 0 && (
           <span className="absolute top-3 left-3 bg-[#ff5500] text-white text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full">
             Disponible
@@ -54,7 +55,7 @@ function ProductCard({ p }) {
 
         <div className="mt-auto flex items-end justify-between">
           <p className="font-bold text-xl text-[#ff5500]">{fmt(p.precio_ref)}</p>
-          <a href={waUrl} target="_blank" rel="noopener"
+          <a href={waUrl} target="_blank" rel="noopener" aria-label={`Consultar ${p.nombre} por WhatsApp`}
              className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-[#ff5500] hover:text-white transition-colors">
             <ShoppingCart className="w-4 h-4" />
           </a>
@@ -99,11 +100,11 @@ export default function CatalogoClient({ productos }) {
               Catálogo WhatsApp
             </a>
             <div className="flex gap-1.5">
-              <button onClick={() => scroll('left')}
+              <button onClick={() => scroll('left')} aria-label="Desplazar catálogo a la izquierda"
                       className="w-9 h-9 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 hover:text-[#ff5500] hover:border-[#ff5500] transition-colors">
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => scroll('right')}
+              <button onClick={() => scroll('right')} aria-label="Desplazar catálogo a la derecha"
                       className="w-9 h-9 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 hover:text-[#ff5500] hover:border-[#ff5500] transition-colors">
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -146,11 +147,11 @@ export default function CatalogoClient({ productos }) {
             <div className="flex items-center gap-2">
               {/* Yape */}
               <div className="bg-[#f5f5f5] rounded-lg px-3 py-1.5 flex items-center gap-1.5">
-                <img src="/yape-logo.png" alt="Yape" className="h-5 w-auto" />
+                <Image src="/yape-logo.png" alt="Yape" width={64} height={20} className="h-5 w-auto" />
               </div>
               {/* Plin */}
               <div className="bg-[#f5f5f5] rounded-lg px-3 py-1.5 flex items-center gap-1.5">
-                <img src="/plin-logo.png" alt="Plin" className="h-5 w-auto" />
+                <Image src="/plin-logo.png" alt="Plin" width={64} height={20} className="h-5 w-auto" />
               </div>
               {/* BCP */}
               <div className="bg-[#f5f5f5] rounded-lg px-3 py-1.5 flex items-center gap-1.5">

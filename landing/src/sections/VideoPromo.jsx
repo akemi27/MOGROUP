@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Instagram, ExternalLink } from 'lucide-react';
 import { EMPRESA } from '../config';
 
@@ -30,6 +30,11 @@ const TIKTOK_POSTS = [
 ];
 
 export default function VideoPromo() {
+  const embedsRef = useRef(null);
+
+  // Los SDK de Instagram/TikTok son pesados (bloquean el hilo principal y
+  // cargan cookies de terceros). Solo se cargan cuando el usuario realmente
+  // llega a esta sección, no en cada carga de página.
   useEffect(() => {
     const loadIG = () => {
       if (window.instgrm) window.instgrm.Embeds.process();
@@ -51,9 +56,19 @@ export default function VideoPromo() {
       }
     };
 
-    const t1 = setTimeout(loadIG, 200);
-    const t2 = setTimeout(loadTT, 400);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const node = embedsRef.current;
+    if (!node) return;
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        loadIG();
+        loadTT();
+        io.disconnect();
+      }
+    }, { rootMargin: '200px' });
+
+    io.observe(node);
+    return () => io.disconnect();
   }, []);
 
   const redes = REDES.filter(r => EMPRESA.redes[r.key]);
@@ -82,7 +97,7 @@ export default function VideoPromo() {
         </div>
 
         {/* Embeds grid — IG + 2 TikToks */}
-        <div data-reveal className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div ref={embedsRef} data-reveal className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           {/* Instagram */}
           <div className="rounded-2xl overflow-hidden bg-white border border-slate-100">
             <blockquote

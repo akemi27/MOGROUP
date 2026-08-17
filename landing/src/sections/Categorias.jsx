@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL } from '../config';
 
@@ -42,8 +43,8 @@ export default function Categorias() {
           {/* Large — Motos */}
           <a href="#productos" data-reveal
              className="group relative rounded-2xl overflow-hidden h-[320px] md:h-full md:row-span-2 block">
-            <img src={CATS[0].img} alt={CATS[0].title}
-                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src={CATS[0].img} alt={CATS[0].title} fill sizes="(max-width: 768px) 100vw, 50vw"
+                   className="object-cover group-hover:scale-105 transition-transform duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <h3 className="text-white font-bold text-xl uppercase mb-1">{CATS[0].title}</h3>
@@ -60,8 +61,8 @@ export default function Categorias() {
             {/* Tech */}
             <a href="#productos" data-reveal data-delay="1"
                className="group relative rounded-2xl overflow-hidden h-[250px] block">
-              <img src={CATS[1].img} alt={CATS[1].title}
-                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <Image src={CATS[1].img} alt={CATS[1].title} fill sizes="(max-width: 768px) 100vw, 25vw"
+                     className="object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <h3 className="text-white font-bold text-lg uppercase mb-1">{CATS[1].title}</h3>
@@ -75,8 +76,8 @@ export default function Categorias() {
               {/* Accesorios */}
               <a href="#productos" data-reveal data-delay="2"
                  className="group relative rounded-2xl overflow-hidden block">
-                <img src={CATS[2].img} alt={CATS[2].title}
-                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src={CATS[2].img} alt={CATS[2].title} fill sizes="(max-width: 768px) 50vw, 12vw"
+                       className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h3 className="text-white font-bold text-sm uppercase mb-0.5">{CATS[2].title}</h3>

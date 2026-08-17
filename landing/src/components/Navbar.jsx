@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL } from '../config';
 
@@ -43,7 +44,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
         <a href="#" className="flex items-center gap-3">
-          <img src="/chine.png" alt="Mo Importaciones" className="h-9 w-auto object-contain" />
+          <Image src="/chine.png" alt="Mo Importaciones" width={90} height={36} priority className="h-9 w-auto object-contain" />
           <span className="font-bold text-slate-800 text-lg hidden sm:block">Mo Group</span>
         </a>
 
@@ -70,7 +71,8 @@ export default function Navbar() {
           Cotizar
         </a>
 
-        <button className="md:hidden text-slate-700 p-1" onClick={() => setOpen(v => !v)}>
+        <button className="md:hidden text-slate-700 p-1" onClick={() => setOpen(v => !v)}
+                aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open}>
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { WHATSAPP, WHATSAPP_MSG_GENERAL, EMPRESA } from '../config';
 
@@ -40,28 +41,21 @@ export default function Hero() {
 
           {/* Left — Product image */}
           <div className="relative order-2 lg:order-1">
-            {SLIDES.map((s, i) => (
-              <div key={i}
-                   className="transition-all duration-700"
-                   style={{
-                     opacity: i === active ? 1 : 0,
-                     transform: i === active ? 'scale(1) translateX(0)' : 'scale(0.95) translateX(-20px)',
-                     position: i === active ? 'relative' : 'absolute',
-                     inset: i === active ? undefined : 0,
-                     pointerEvents: i === active ? 'auto' : 'none',
-                   }}>
-                <img src={s.img} alt={s.title}
-                     className="w-full max-h-[65vh] object-contain drop-shadow-2xl" />
-              </div>
-            ))}
+            <div key={active} className="slide-in relative w-full h-[50vh] max-h-[65vh]">
+              <Image src={slide.img} alt={slide.title.replace('\n', ' ')} fill
+                     className="object-contain drop-shadow-2xl"
+                     sizes="(max-width: 1024px) 90vw, 45vw"
+                     priority={active === 0}
+                     fetchPriority={active === 0 ? 'high' : 'auto'} />
+            </div>
 
             {/* Nav arrows bottom left */}
             <div className="absolute bottom-4 left-0 flex items-center gap-2">
-              <button onClick={prev} className="flex items-center gap-1 text-slate-400 hover:text-[#ff5500] transition-colors text-sm">
+              <button onClick={prev} aria-label="Slide anterior" className="flex items-center gap-1 text-slate-400 hover:text-[#ff5500] transition-colors text-sm">
                 <ChevronLeft className="w-5 h-5" /> ANT
               </button>
               <span className="text-slate-300 mx-2">|</span>
-              <button onClick={next} className="flex items-center gap-1 text-slate-400 hover:text-[#ff5500] transition-colors text-sm">
+              <button onClick={next} aria-label="Siguiente slide" className="flex items-center gap-1 text-slate-400 hover:text-[#ff5500] transition-colors text-sm">
                 SIG <ChevronRight className="w-5 h-5" />
               </button>
             </div>
@@ -103,8 +97,8 @@ export default function Hero() {
 
       {/* Slide indicators */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pb-8 flex gap-2">
-        {SLIDES.map((_, i) => (
-          <button key={i} onClick={() => setActive(i)}
+        {SLIDES.map((s, i) => (
+          <button key={i} onClick={() => setActive(i)} aria-label={`Ver slide ${s.tag}`}
                   className={`h-1 rounded-full transition-all duration-300 ${
                     i === active ? 'w-10 bg-[#ff5500]' : 'w-4 bg-slate-200 hover:bg-slate-300'
                   }`} />
