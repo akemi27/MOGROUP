@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 const getAlmacenes = async (req, res) => {
     try {
-        const result = await db.query(`SELECT * FROM almacen ORDER BY id ASC`);
+        const result = await db.query(`SELECT * FROM almacen WHERE activo = true ORDER BY id ASC`);
         res.json(result.rows);
     } catch (error) {
         console.error(error);

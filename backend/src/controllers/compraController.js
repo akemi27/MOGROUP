@@ -53,8 +53,10 @@ const createCompra = async (req, res) => {
         await client.query('BEGIN');
         const { proveedor_id, fecha, items, tip_recibo_id, numero_recibo } = req.body;
 
-        if (!items || items.length === 0)
+        if (!items || items.length === 0) {
+            await client.query('ROLLBACK');
             return res.status(400).json({ error: 'La compra debe tener al menos un producto' });
+        }
 
         const total = items.reduce((s, i) => s + parseFloat(i.cantidad) * parseFloat(i.costo_unit), 0);
 
@@ -99,8 +101,10 @@ const recibirCompra = async (req, res) => {
         const orden = await client.query(
             `SELECT * FROM ord_compra WHERE id = $1 AND estado = 'pendiente'`, [id]
         );
-        if (orden.rows.length === 0)
+        if (orden.rows.length === 0) {
+            await client.query('ROLLBACK');
             return res.status(400).json({ error: 'Orden no encontrada o ya fue recibida' });
+        }
 
         const items = await client.query(
             `SELECT * FROM det_compra WHERE ord_compra_id = $1`, [id]

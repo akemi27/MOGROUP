@@ -57,8 +57,10 @@ const createVenta = async (req, res) => {
         await client.query('BEGIN');
         const { cliente_id, fecha, fecha_separacion, destino, unidades, tip_recibo_id, numero_recibo } = req.body;
 
-        if (!unidades || unidades.length === 0)
+        if (!unidades || unidades.length === 0) {
+            await client.query('ROLLBACK');
             return res.status(400).json({ error: 'La venta debe tener al menos una unidad' });
+        }
 
         for (const u of unidades) {
             const check = await client.query(
